@@ -30,6 +30,19 @@ const Page = () => {
                 }}
             />
             <Tabs.Screen
+                name="My-Meditate-Chart"
+                options={{
+                    tabBarLabel: "My-Meditate-Chart",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="chart-bar"
+                            size={24}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
                 name="affirmations"
                 options={{
                     tabBarLabel: "Affirmations English",
