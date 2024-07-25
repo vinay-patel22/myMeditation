@@ -43,6 +43,19 @@ const Page = () => {
                 }}
             />
             <Tabs.Screen
+                name="My5PointsScreen"
+                options={{
+                    tabBarLabel: "My 5 Points",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="star-check"
+                            size={24}
+                            color={color}
+                        />
+                    ),
+                }}
+            />
+            <Tabs.Screen
                 name="affirmations"
                 options={{
                     tabBarLabel: "Affirmations English",
