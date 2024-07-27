@@ -1,65 +1,65 @@
-import californiaBackyardOne from "@/assets/affirmation-images/California-backyard-1.jpeg";
-import californiaBackyardTwo from "@/assets/affirmation-images/California-backyard-2.jpeg";
-import californiaBackyardThree from "@/assets/affirmation-images/California-backyard-3.jpeg";
-import californiaBackyardFour from "@/assets/affirmation-images/California-backyard-4.jpeg";
+import PositivityOne from "@/assets/affirmation-images/Positivity-1.jpeg";
+import PositivityTwo from "@/assets/affirmation-images/Positivity-2.jpeg";
+import PositivityThree from "@/assets/affirmation-images/Positivity-3.jpeg";
+import PositivityFour from "@/assets/affirmation-images/Positivity-4.jpeg";
 
-import englishCountrysideOne from "@/assets/affirmation-images/english-countryside-1.jpeg";
-import englishCountrysideTwo from "@/assets/affirmation-images/english-countryside-2.jpeg";
-import englishCountrysideThree from "@/assets/affirmation-images/english-countryside-3.jpeg";
-import englishCountrysideFour from "@/assets/affirmation-images/english-countryside-4.jpeg";
+import ReduceAnxietyOne from "@/assets/affirmation-images/Reduce-Anxiety-1.jpeg";
+import ReduceAnxietyTwo from "@/assets/affirmation-images/Reduce-Anxiety-2.jpeg";
+import ReduceAnxietyThree from "@/assets/affirmation-images/Reduce-Anxiety-3.jpeg";
+import ReduceAnxietyFour from "@/assets/affirmation-images/Reduce-Anxiety-4.jpeg";
 
-import mountainMeditateOne from "@/assets/affirmation-images/mountain-meditate-1.webp";
-import mountainMeditateTwo from "@/assets/affirmation-images/mountain-meditate-2.webp";
-import mountainMeditateThree from "@/assets/affirmation-images/mountain-meditate-3.webp";
-import mountainMeditateFour from "@/assets/affirmation-images/mountain-meditate-4.webp";
+import SuccessOne from "@/assets/affirmation-images/Success-1.webp";
+import SuccessTwo from "@/assets/affirmation-images/Success-2.webp";
+import SuccessThree from "@/assets/affirmation-images/Success-3.webp";
+import SuccessFour from "@/assets/affirmation-images/Success-4.webp";
 
-import nightSkyOne from "@/assets/affirmation-images/night-sky-1.jpeg";
-import nightSkyTwo from "@/assets/affirmation-images/night-sky-2.jpeg";
-import nightSkyThree from "@/assets/affirmation-images/night-sky-3.jpeg";
-import nightSkyFour from "@/assets/affirmation-images/night-sky-4.jpeg";
+import SelfBeliefOne from "@/assets/affirmation-images/Self-Belief-1.jpeg";
+import SelfBeliefTwo from "@/assets/affirmation-images/Self-Belief-2.jpeg";
+import SelfBeliefThree from "@/assets/affirmation-images/Self-Belief-3.jpeg";
+import SelfBeliefFour from "@/assets/affirmation-images/Self-Belief-4.jpeg";
 
-import oregonOne from "@/assets/affirmation-images/oregon-1.jpeg";
-import oregonTwo from "@/assets/affirmation-images/oregon-2.jpeg";
-import oregonThree from "@/assets/affirmation-images/oregon-3.jpeg";
-import oregonFour from "@/assets/affirmation-images/oregon-4.jpeg";
+import MentalHealthOne from "@/assets/affirmation-images/Mental-Health-1.jpeg";
+import MentalHealthTwo from "@/assets/affirmation-images/Mental-Health-2.jpeg";
+import MentalHealthThree from "@/assets/affirmation-images/Mental-Health-3.jpeg";
+import MentalHealthFour from "@/assets/affirmation-images/Mental-Health-4.jpeg";
 
-import relaxingRiverOne from "@/assets/affirmation-images/relaxing-river-1.jpeg";
-import relaxingRiverTwo from "@/assets/affirmation-images/relaxing-river-2.jpeg";
-import relaxingRiverThree from "@/assets/affirmation-images/relaxing-river-3.jpeg";
-import relaxingRiverFour from "@/assets/affirmation-images/relaxing-river-4.jpeg";
+import LawofAttractionOne from "@/assets/affirmation-images/Law-of-Attraction-1.jpeg";
+import LawofAttractionTwo from "@/assets/affirmation-images/Law-of-Attraction-2.jpeg";
+import LawofAttractionThree from "@/assets/affirmation-images/Law-of-Attraction-3.jpeg";
+import LawofAttractionFour from "@/assets/affirmation-images/Law-of-Attraction-4.jpeg";
 
-import tuscannyOne from "@/assets/affirmation-images/Tuscanny-1.jpeg";
-import tuscannyTwo from "@/assets/affirmation-images/Tuscanny-2.jpeg";
-import tuscannyThree from "@/assets/affirmation-images/Tuscanny-3.jpeg";
-import tuscannyFour from "@/assets/affirmation-images/Tuscanny-4.jpeg";
+import LimitingBeliefsOne from "@/assets/affirmation-images/Limiting-Beliefs-1.jpeg";
+import LimitingBeliefsTwo from "@/assets/affirmation-images/Limiting-Beliefs-2.jpeg";
+import LimitingBeliefsThree from "@/assets/affirmation-images/Limiting-Beliefs-3.jpeg";
+import LimitingBeliefsFour from "@/assets/affirmation-images/Limiting-Beliefs-4.jpeg";
 
 export default {
-    californiaBackyardOne,
-    californiaBackyardTwo,
-    californiaBackyardThree,
-    californiaBackyardFour,
-    englishCountrysideOne,
-    englishCountrysideTwo,
-    englishCountrysideThree,
-    englishCountrysideFour,
-    mountainMeditateOne,
-    mountainMeditateTwo,
-    mountainMeditateThree,
-    mountainMeditateFour,
-    nightSkyOne,
-    nightSkyTwo,
-    nightSkyThree,
-    nightSkyFour,
-    oregonOne,
-    oregonTwo,
-    oregonThree,
-    oregonFour,
-    relaxingRiverOne,
-    relaxingRiverTwo,
-    relaxingRiverThree,
-    relaxingRiverFour,
-    tuscannyOne,
-    tuscannyTwo,
-    tuscannyThree,
-    tuscannyFour,
+    PositivityOne,
+    PositivityTwo,
+    PositivityThree,
+    PositivityFour,
+    ReduceAnxietyOne,
+    ReduceAnxietyTwo,
+    ReduceAnxietyThree,
+    ReduceAnxietyFour,
+    SuccessOne,
+    SuccessTwo,
+    SuccessThree,
+    SuccessFour,
+    SelfBeliefOne,
+    SelfBeliefTwo,
+    SelfBeliefThree,
+    SelfBeliefFour,
+    MentalHealthOne,
+    MentalHealthTwo,
+    MentalHealthThree,
+    MentalHealthFour,
+    LawofAttractionOne,
+    LawofAttractionTwo,
+    LawofAttractionThree,
+    LawofAttractionFour,
+    LimitingBeliefsOne,
+    LimitingBeliefsTwo,
+    LimitingBeliefsThree,
+    LimitingBeliefsFour,
 };
