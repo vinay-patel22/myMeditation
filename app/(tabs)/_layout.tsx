@@ -4,7 +4,6 @@ import Colors from "@/constants/Colors";
 import React from "react";
 
 export const unstable_settings = {
-    // Ensure that reloading on `/modal` keeps a back button present.
     initialRouteName: "(tabs)",
 };
 
@@ -61,6 +60,19 @@ const Page = () => {
                     tabBarLabel: "Affirmations English",
                     tabBarIcon: ({ color }) => (
                         <Entypo name="open-book" size={24} color={color} />
+                    ),
+                }}
+            />
+            <Tabs.Screen
+                name="favorites"
+                options={{
+                    tabBarLabel: "Favorites",
+                    tabBarIcon: ({ color }) => (
+                        <MaterialCommunityIcons
+                            name="star"
+                            size={24}
+                            color={color}
+                        />
                     ),
                 }}
             />

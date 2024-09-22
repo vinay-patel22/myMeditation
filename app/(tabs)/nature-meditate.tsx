@@ -1,7 +1,7 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import {
     FlatList,
     ImageBackground,
@@ -9,36 +9,102 @@ import {
     StyleSheet,
     Text,
     View,
+    Alert,
+    Button,
 } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import MEDITATION_IMAGES from "@/constants/meditation-images";
 import { MEDITATION_DATA } from "@/constants/MeditationData";
 import AppGradient from "@/components/AppGradient";
 
+
+const dataWithIds = MEDITATION_DATA.map((item, index) => ({
+    ...item,
+    id: index + 1,
+}));
+
 const Page = () => {
     const flatListRef = useRef<FlatList>(null);
+    const [favorites, setFavorites] = useState(new Set<number>());
+    const [paused, setPaused] = useState(false);
+
+    const togglePause = () => {
+        setPaused(!paused);
+    };
+
+
+    useEffect(() => {
+        const loadFavorites = async () => {
+            try {
+                const storedFavorites = await AsyncStorage.getItem("favorites");
+                if (storedFavorites) {
+                    setFavorites(new Set(JSON.parse(storedFavorites)));
+                }
+            } catch (e) {
+                console.error("Failed to load favorites:", e);
+            }
+        };
+        loadFavorites();
+    }, []);
+
+    useEffect(() => {
+        const saveFavorites = async () => {
+            try {
+                await AsyncStorage.setItem("favorites", JSON.stringify([...favorites]));
+            } catch (e) {
+                console.error("Failed to save favorites:", e);
+            }
+        };
+        saveFavorites();
+    }, [favorites]);
 
     useEffect(() => {
         let scrollValue = 0;
         let scrolled = 0;
 
-        // Calculate item height and total content height
-        const itemHeight = 200; // Adjust this based on your item height
+        const itemHeight = 200;
         const totalHeight = itemHeight * MEDITATION_DATA.length;
 
         const interval = setInterval(() => {
-            scrolled++;
-            if (scrolled < MEDITATION_DATA.length) {
-                scrollValue = scrollValue + itemHeight;
-            } else {
-                scrollValue = 0;
-                scrolled = 0;
+            if (!paused) {
+                scrolled++;
+                if (scrolled < MEDITATION_DATA.length) {
+                    scrollValue = scrollValue + itemHeight;
+                } else {
+                    scrollValue = 0;
+                    scrolled = 0;
+                }
+                flatListRef.current?.scrollToOffset({
+                    animated: true,
+                    offset: scrollValue,
+                });
             }
-            flatListRef.current?.scrollToOffset({ animated: true, offset: scrollValue });
-        }, 2000); // Adjust the time interval for auto-scrolling
+        }, 2000);
 
         return () => clearInterval(interval);
-    }, []);
+    }, [paused]);
+
+    const toggleFavorite = async (id: number) => {
+        setFavorites((prev) => {
+            const updatedFavorites = new Set(prev);
+            let actionMessage = '';
+            if (updatedFavorites.has(id)) {
+                updatedFavorites.delete(id);
+                actionMessage = "Removed from favorites.";
+            } else {
+                updatedFavorites.add(id);
+                actionMessage = "Added to favorites!";
+            }
+
+            AsyncStorage.setItem("favorites", JSON.stringify([...updatedFavorites]));
+
+            Alert.alert("Favorite Updated", actionMessage);
+            return updatedFavorites;
+        });
+    };
+
+
 
     return (
         <View style={styles.container}>
@@ -51,10 +117,19 @@ const Page = () => {
                         Start Your Meditation Practice Today
                     </Text>
                 </View>
+
+                <Pressable onPress={() => router.push('/favorites')}>
+                    <Text style={styles.favoritesButton}>
+                        View Favorites ({favorites.size})
+                    </Text>
+                </Pressable>
+
                 <Text style={styles.sectionTitle}>Meditation Commentary</Text>
+                <Button title={paused ? "Resume Scrolling" : "Pause Scrolling"} onPress={togglePause} />
+
                 <FlatList
                     ref={flatListRef}
-                    data={MEDITATION_DATA}
+                    data={dataWithIds}
                     contentContainerStyle={styles.list}
                     keyExtractor={(item) => item.id.toString()}
                     showsVerticalScrollIndicator={false}
@@ -78,6 +153,12 @@ const Page = () => {
                                     <Text style={styles.itemTitle}>
                                         {item.title}
                                     </Text>
+
+                                    <Pressable onPress={() => toggleFavorite(item.id)} style={styles.favoriteButton}>
+                                        <Text style={styles.favoriteText}>
+                                            {favorites.has(item.id) ? "♥" : "♡"}
+                                        </Text>
+                                    </Pressable>
                                 </LinearGradient>
                             </ImageBackground>
                         </Pressable>
@@ -92,14 +173,13 @@ const Page = () => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        // paddingBottom: 75,
     },
     header: {
         marginBottom: 24,
         paddingHorizontal: 20,
     },
     title: {
-        color: 'white', // Example color, adjust as needed
+        color: 'white',
         fontSize: 32,
         fontWeight: 'bold',
         textAlign: 'left',
@@ -108,12 +188,12 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     subtitle: {
-        color: '#4B0082', // Example color, adjust as needed
+        color: '#4B0082',
         fontSize: 20,
         fontWeight: '500',
     },
     sectionTitle: {
-        color: 'black', // Example color, adjust as needed
+        color: 'black',
         fontSize: 20,
         fontWeight: '500',
         textAlign: 'center',
@@ -124,8 +204,8 @@ const styles = StyleSheet.create({
     },
     itemContainer: {
         width: '100%',
-        height: 200, // Adjust based on your item size
-        marginVertical: 5, // Space between items
+        height: 200,
+        marginVertical: 5,
     },
     backgroundImage: {
         flex: 1,
@@ -139,10 +219,32 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     itemTitle: {
-        color: '#FFFFFF', // Example color, adjust as needed
+        color: '#FFFFFF',
         fontSize: 24,
         fontWeight: 'bold',
         textAlign: 'center',
+    },
+    favoriteButton: {
+        position: 'absolute',
+        bottom: 10,
+        right: 10,
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        borderRadius: 50,
+        padding: 10,
+    },
+    favoriteText: {
+        fontSize: 24,
+        color: 'red',
+        fontWeight: 'bold',
+    },
+    favoritesButton: {
+        color: '#4B0082',
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'right',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        textDecorationLine: 'underline'
     },
 });
 
